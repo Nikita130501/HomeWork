@@ -1,0 +1,64 @@
+﻿@model StrAgent.Models.StrSl
+
+@{
+    ViewData["Title"] = "Страховой случай";
+
+    Layout = "_LayoutPolicyholder";
+}
+
+<h1>Страховой случай #@Html.DisplayFor(model => model.Id)</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Статус
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        @if (Model.Status != "Waiting")
+        {
+            <dt class="col-sm-2">
+                Агент
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Agent.Login)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Договор
+        </dt>
+        <dd class="col-sm-10">
+            #@Html.DisplayFor(model => model.IDDogv)
+        </dd>
+        <dt class="col-sm-2">
+            Дата
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            Описание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Described)
+        </dd>
+    </dl>
+</div>
+@if (Model.Status != "Accepted")
+
+{
+    <div>
+        <a asp-action="EditStrSl" asp-route-id="@Model.Id">Изменить</a> |
+        <a asp-action="StrSlList">Назад</a>
+    </div>
+}
+
+else
+
+{
+    <div>
+        <a asp-action="StrSlList">Назад</a>
+    </div>
+}

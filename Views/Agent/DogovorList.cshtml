@@ -1,0 +1,68 @@
+﻿@model IEnumerable<StrAgent.Models.Dogovor>
+
+@{
+    ViewData["Title"] = "Список договоров";
+    Layout = "_LayoutAgent";
+}
+
+<h1>Список договоров</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Номер
+            </th>
+            <th>
+                Статус договора
+            </th>
+            <th>
+                Клиент
+            </th>
+            <th>
+                Агент
+            </th>
+            <th>
+                Тариф
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Описание
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Klient.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarif.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Described)
+            </td>
+            <td>
+                <a asp-action="EditDogovor" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="DeleteDogovor" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

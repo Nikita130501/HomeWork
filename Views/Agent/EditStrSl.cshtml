@@ -1,0 +1,58 @@
+﻿@model StrAgent.Models.StrSl
+
+@{
+    ViewData["Title"] = "Изменение страхового случая";
+    Layout = "_LayoutAgent";
+}
+
+<h1>Изменение страхового случая</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditStrSl" style="max-width: 400px;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label" for="Status">Статус</label>
+                <select asp-for="Status" class="form-control input-ideal">
+                    @foreach (var id in ViewBag.Statuses.Items)
+                    {
+                        <option value="@id">@id</option>
+                    }
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IDKl" class="form-control input-ideal" />
+                <span asp-validation-for="IDKl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IDAg" class="form-control input-ideal" />
+                <span asp-validation-for="IDAg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Идентификатор договора:  @Model.IDDogv</label>
+                <span asp-validation-for="IDDogv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Дата</label>
+                <input asp-for="Date" class="form-control input-ideal" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Описание</label>
+                <input asp-for="Described" class="form-control input-ideal" />
+                <span asp-validation-for="Described" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary stock-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="StrSlList">Назад</a>
+</div>
+

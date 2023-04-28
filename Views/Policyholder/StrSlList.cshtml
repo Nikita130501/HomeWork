@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StrAgent.Models.StrSl>
+
+@{
+    ViewData["Title"] = "StrSlList";
+    Layout = "_LayoutPolicyholder";
+}
+
+<h1>Список страховых случаев</h1>
+
+<p>
+    <a asp-action="CreateStrSl">Добавить новый</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Статус
+            </th>
+            <th>
+                Агент
+            </th>
+            <th>
+                Договор
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Описание
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agent.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDDogv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Described)
+            </td>
+            @if (item.Status == "Accepted")
+            {
+                <td>
+                    <a asp-action="StrSlDetails" asp-route-id="@item.Id">Подробнее</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="EditStrSl" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="StrSlDetails" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="DeleteStrSl" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

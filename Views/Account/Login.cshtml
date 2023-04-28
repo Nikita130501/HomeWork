@@ -1,0 +1,16 @@
+﻿@model StrAgent.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+
+    Layout = "_Layout";
+}
+
+<div class="container-register container-style">
+    <form asp-action="Login" style="max-width: 400px;">
+        <h1 class="register title-form">Вход</h1>
+        <input asp-for="Login" class="form-control input-ideal" placeholder="Логин">
+        <input asp-for="Password" class="form-control input-ideal" type="password" placeholder="Пароль">
+        <button class="btn btn-primary stock-btn">Отправить</button>
+    </form>
+</div>

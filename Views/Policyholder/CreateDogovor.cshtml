@@ -1,0 +1,56 @@
+﻿@model StrAgent.Models.Dogovor
+
+@{
+    ViewData["Title"] = "CreateDogovor";
+    Layout = "_LayoutPolicyholder";
+}
+
+<h1>Создать договор</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateDogovor" style="max-width: 400px;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Status" class="form-control input-ideal" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IDKl" class="form-control input-ideal" />
+                <span asp-validation-for="IDKl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IDAg" class="form-control input-ideal" />
+                <span asp-validation-for="IDAg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Тариф</label>
+                <select asp-for="IDTr" class="form-control input-ideal">
+                    @foreach (var id in ViewBag.Tarifs.Items)
+                    {
+                        <option value="@id.Id">@id.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IDTr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Дата</label>
+                <input asp-for="Date" class="form-control input-ideal" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Описание</label>
+                <input asp-for="Described" class="form-control input-ideal" />
+                <span asp-validation-for="Described" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary stock-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="DogovorList">Назад</a>
+</div>
